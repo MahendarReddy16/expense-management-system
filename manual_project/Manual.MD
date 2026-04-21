@@ -1,2 +1,2 @@
 ## Manual Project ##
-## Frontend Backend Database ## 
+## User → Frontend(Presentation Layer) → Backend(Application Layer) ↔ Database(Data Layer) ## 
