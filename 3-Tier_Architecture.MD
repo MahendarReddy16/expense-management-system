@@ -2,7 +2,7 @@
 ## 🏗️ 3-Tier Architecture Project( Manual and Automation Way) ##
 
 🏗️ 3-Tier Architecture Definition
-````
+```
 3-Tier Architecture is a software architecture model that separates an application into three independent layers:
 ```
 
