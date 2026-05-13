@@ -1,0 +1,6 @@
+#!/bin/bash
+
+LOG_FOLDER=
+SCRIPT_NAME=
+TIME_STAMP=
+LOG_FILE=
