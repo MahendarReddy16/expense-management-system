@@ -1,9 +1,20 @@
 ### Backend
-Backend service is responsible for adding the given values to database. Backend service is written in NodeJS, Hence we need to install NodeJS.
-**Developer has chosen NodeJs, Check with developer which version of NodeJS is needed. Developer has set a context that it can work with NodeJS >20**
+Backend service is responsible for adding the given values to database. Backend service can be written in any language like Java, Python,.Net and NodeJS etc.. based on the project and availability.
+
+**Developer has chosen the language, Check with developer which version of language is need to be installed. Developer has set a context that it can work with NodeJS >20**
+
+ Hence we need to install NodeJS here as per the requirement.
+ Nodejs build file == package.json
+ buils tool == npm --> called as node package manager
+ 
 Install NodeJS, By default NodeJS 16 is available, We would like to enable 20 version and install this.
 
 **You can list modules by using dnf module list**
+Check the installed packages
+```
+dnf module list nodejs -y
+```
+Need to disable the unnecessary packages which are not required and enable the required version
 ```
 dnf module disable nodejs -y
 ```
@@ -13,7 +24,9 @@ dnf module enable nodejs:20 -y
 ```
 dnf install nodejs -y
 ```
-Configure the application.
+## Configure the application user
+System users are created for running the application( used for the common purpose )
+
 Add application User
 ```
 useradd expense
@@ -40,11 +53,21 @@ Lets download the dependencies.
 ```
 cd /app
 ```
+npm install command will validate whether the folder contains package.json file and install the required libraries from the internet
+It will create a new folder as node_modules
 ```
 npm install
 ```
-We need to setup a new service in systemd so systemctl can manage this service
-Setup SystemD Expense Backend Service
+To start the backend server we need to run the index.json file contains /bin/node /app/index.json but each time running manually is quite difficult. So if we create the systemctl to run it will be east to start/stop/restart the services.
+
+From google we need to search for the systemctl service file and place under /etc/systemd/system/ folder where all systemctl service files will contain and the name of the file should contain as .service
+
+When the linux server starts it checks all the .service files under the above folder and restarts automatically.
+
+Note: In systemctl service file we need to specify the private IP of database server for the faster communication(inside network)
+
+Outside network --> we will use public IP
+
 ```
 vim /etc/systemd/system/backend.service
 ```
@@ -60,7 +83,7 @@ SyslogIdentifier=backend
 WantedBy=multi-user.target
 ```
 **NOTE: Ensure you replace <MYSQL-SERVER-IPADDRESS> with IP address**
-Load the service.
+Once placed and saved we need to reload the service.
 ```
 systemctl daemon-reload
 ```
@@ -71,13 +94,37 @@ systemctl start backend
 ```
 systemctl enable backend
 ```
-For this application to work fully functional we need to load schema to the Database.
-We need to load the schema. To load schema we need to install mysql client.
-To have it installed we can use
+To validate the status of backend server is  active (running) or not
+```
+systemctl status backend
+```
+To validate port is enabled or not
+```
+netstat -lntp
+```
+To validate the process running or not
+```
+ps -ef | grep <name of service>
+```
+
+If failed to start we need to check the logs in this folder /var/log/messages  --> linux log folder
+>less /var/log/messages
+Shift+G --> to go down
+gg --> to go up
+
+## Database connection Establishment Process
+
+To work application fully functional we need to create the schema/database for expense project and create table
+path in backend server --> cat schema/backend.sql
+
+We can't use every where root credientials so js developer creats user and password
+
+Backend server contains sql file to connect to database server we need have client. Below is the command to install mysql client.
 ```
 dnf install mysql -y
 ```
 Load Schema
+Output --> >(greater than)  Input -->  < (less than)
 ```
 mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sql
 ```

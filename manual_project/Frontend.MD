@@ -1,6 +1,7 @@
 # Frontend
 The frontend is the service in Expense to serve the web content over Nginx. This will have the web frame for the web application.
-This is a static content and to serve static content we need a web server. This server
+This is a static content and to serve static content we need a web server.
+
 Developer has chosen Nginx as a web server and thus we will install Nginx Web Server.
 Install Nginx
 ```
@@ -14,6 +15,10 @@ Start nginx
 ```
 systemctl start nginx
 ```
+/etc/nginx/ --> nginx config is present here
+/usr/share/nginx/html  --> we need paste website at this location
+/var/logs/nginx  --> Nginx places the logs here
+
 **Try to access the service once over the browser and ensure you get some default content**
 Remove the default content that web server is serving.
 ```
