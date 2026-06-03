@@ -23,18 +23,18 @@ N="\e[0m"
 VALIDATE () {  
     if [ $1 -ne 0 ]
    then 
-      echo -e "$2 $R FAILURE $N" | tee -e $LOG_FILE
+      echo -e "$2 $R FAILURE $N" | tee -a $LOG_FILE
       exit 1
    else
-      echo -e "$2 $G SUCCESS!..$N" | tee -e $LOG_FILE
+      echo -e "$2 $G SUCCESS!..$N" | tee -a $LOG_FILE
    fi 
 }
 
-echo "Script started execution at $(date)" | tee -e $LOG_FILE
+echo "Script started execution at $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]
 then
-   echo -e " $R Root Previlegous required $N " | tee -e $LOG_FILE
+   echo -e " $R Root Previlegous required $N " | tee -a $LOG_FILE
    exit 1
 fi
 
