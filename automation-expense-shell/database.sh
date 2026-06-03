@@ -48,7 +48,7 @@ dnf list installed mysql-server
 if [ $? -ne 0 ]
 then 
    echo " mysql-server is not installed, installing it...."
-   dnf install mysql-server -y
+   dnf install mysql-server -y >> $LOG_FILE
    VALIDATE $? "Installing  mysql-server"
    systemctl start mysqld
    VALIDATE $? "Starting mysql Server"
