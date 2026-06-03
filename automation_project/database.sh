@@ -24,13 +24,14 @@ fi
 dnf list installed $PACKAGE
 if [ $? -ne 0 ]
 then 
-   echo " $PACKAGE is not installed, installin it.. "
+   echo " $PACKAGE is not installed, installing it...."
    dnf install $PACKAGE -y
    if [ $? -ne 0 ]
    then 
       echo " $PACKAGE installation failed... check the error. "
    else
       echo " $PACKAGE Installation is Successfully done!.. "
+   fi
 else
    echo " $PACKAGE installed, Nothing to do. "
 fi
