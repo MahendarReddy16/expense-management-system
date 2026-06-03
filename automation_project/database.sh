@@ -6,11 +6,18 @@ TIME_STAMP=
 LOG_FILE=
 
 PACKAGE=$1
+
 USERID=$(id -u)
 
 if [ $USERID -ne 0 ]
 then
    echo " Root Previlegous required "
+   exit 1
+fi
+
+if [ -z "$PACKAGE" ]
+then
+   echo " USAGE:: $0 provide atleast one package name "
    exit 1
 fi
 
