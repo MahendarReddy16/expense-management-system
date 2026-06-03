@@ -9,6 +9,7 @@ USERID=$(id -u)
 if [ $USERID -ne 0 ]
 then
    echo " Root Prevligeous required"
+   exit 1
 fi
 
 echo " Hello World "
