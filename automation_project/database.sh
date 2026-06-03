@@ -5,11 +5,25 @@ SCRIPT_NAME=
 TIME_STAMP=
 LOG_FILE=
 
+PACKAGE=$1
 USERID=$(id -u)
+
 if [ $USERID -ne 0 ]
 then
-   echo " Root Prevligeous required"
+   echo " Root Previlegous required "
    exit 1
 fi
 
-echo " Hello World "
+dnf list installed $PACKAGE
+if [ $? -ne 0 ]
+then 
+   echo " $PACKAGE is not installed, installin it.. "
+   dnf install $PACKAGE -y
+   if [ $? -ne 0 ]
+   then 
+      echo " $PACKAGE installation failed... check the error. "
+   else
+      echo " $PACKAGE Installation is Successfully done!.. "
+else
+   echo " $PACKAGE installed, Nothing to do. "
+fi
