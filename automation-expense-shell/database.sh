@@ -8,7 +8,7 @@ LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME-$TIME_STAMP.log"
 
 #creating log folder directory if not present
 
-mkdir -p $LOG_FOLDER
+mkdir -p "$LOG_FOLDER"
 
 #PACKAGE=$1 # variable to pass an argument!..
 
