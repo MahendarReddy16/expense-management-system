@@ -73,7 +73,7 @@ pwd
 npm install &>>$LOG_FILE
 VALIDATE $? "Installing the npm package"
 
-cp /home/ec2-user/  /etc/systemd/system/backend.service
+cp /home/ec2-user/expense-management-system/automation-expense-shell/backend.service /etc/systemd/system/backend.service
 
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing the mysql client"
