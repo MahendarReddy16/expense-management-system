@@ -74,6 +74,7 @@ npm install &>>$LOG_FILE
 VALIDATE $? "Installing the npm package"
 
 cp /home/ec2-user/expense-management-system/automation-expense-shell/backend.service /etc/systemd/system/backend.service
+VALIDATE $? "Copying the path"
 
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing the mysql client"
