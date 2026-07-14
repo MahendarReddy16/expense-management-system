@@ -79,7 +79,7 @@ VALIDATE $? "Copying the path"
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing the mysql client"
 
-mysql -h mysql.devsecoops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h mysql.devsecoops.online -u root -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Schema loading"
 
 systemctl daemon-reload &>>$LOG_FILE
