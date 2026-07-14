@@ -78,7 +78,7 @@ cp /home/ec2-user/expense-management-system/automation-expense-shell/backend.ser
 dnf install mysql -y &>>$LOG_FILE
 VALIDATE $? "Installing the mysql client"
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h database.devsecoops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Schema loading"
 
 systemctl daemon-reload &>>$LOG_FILE
